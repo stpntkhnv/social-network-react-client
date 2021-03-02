@@ -7,6 +7,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Callback from "./pages/callback";
 import Main_page from "./components/test";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

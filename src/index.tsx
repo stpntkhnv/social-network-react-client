@@ -4,11 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import NavBar from './components/NavBar';
+import LeftSideBar from "./components/left-side-bar";
 
 ReactDOM.render(
     <BrowserRouter>
         <React.StrictMode>
-            <App />
+            <div className="d-flex">
+                <NavBar/>
+                <LeftSideBar/>
+                <App />
+
+            </div>
+
         </React.StrictMode>
     </BrowserRouter>
   ,
