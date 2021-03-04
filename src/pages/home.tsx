@@ -1,12 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import logo from "../logo.svg";
+import {connect} from "react-redux";
+import authService from "../services/authService";
 
-const Home = () => {
+
+function Home(props: any) {
+
+
+
+
+    function checkUser() {
+        authService.getUser().then(user => {
+            if(user){
+                alert('da')
+            }else{
+                alert('net');
+            }
+        })
+    }
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+        <div className="App w-100">
+            <header className="">
+                <img src={logo} className="App-logo" alt="logo"/>
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
@@ -19,9 +36,24 @@ const Home = () => {
                     Learn React
                 </a>
                 <Link to='/Login'>Login</Link>
+                <button onClick={checkUser}>dasd</button>
             </header>
         </div>
     );
-};
+}
 
-export default Home;
+let mapStateToProps = (state: any) => {
+    return {
+        ...state
+    }
+}
+
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        increment: () => {
+            dispatch({type: "INCREMENT"});
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

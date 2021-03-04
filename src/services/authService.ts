@@ -15,6 +15,16 @@ export function getUser() {
     return userManager.getUser();
 }
 
+export function checkUser() {
+    userManager.getUser().then(user => {
+        if(user){
+            alert('authenticate')
+        }else{
+            alert('unauthorized');
+        }
+    })
+}
+
 export function signinRedirect() {
     return userManager.signinRedirect()
 }

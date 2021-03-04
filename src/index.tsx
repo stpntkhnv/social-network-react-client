@@ -6,18 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import NavBar from './components/NavBar';
 import LeftSideBar from "./components/left-side-bar";
+import { Provider } from 'react-redux';
+import {store} from "./store/configureStore";
 
 ReactDOM.render(
     <BrowserRouter>
-        <React.StrictMode>
+        <Provider store={store}>
             <div className="d-flex">
                 <NavBar/>
                 <LeftSideBar/>
                 <App />
 
             </div>
+        </Provider>
 
-        </React.StrictMode>
     </BrowserRouter>
   ,
   document.getElementById('root')

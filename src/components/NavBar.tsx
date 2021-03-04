@@ -6,7 +6,7 @@ import NavbarUser from "./navbar/navbar-user";
 function NavBar() {
 
     return (
-        <nav className="position-absolute mx-auto w-100 d-flex justify-content-between">
+        <nav className="position-absolute mx-auto w-100 d-flex justify-content-between sticky-top">
             <div className="w-25"></div>
             <NavbarMenu />
             <div className="w-25">
