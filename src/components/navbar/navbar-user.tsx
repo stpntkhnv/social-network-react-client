@@ -15,13 +15,9 @@ const NavbarUser = (props: any) => {
             if(user)
             {
                 props.signIn(user);
-                console.log('auth');
-                console.log(user);
 
                 setAuthenticated(true);
                 setIdentityUser(user);
-
-                console.log(props);
             }
         })
         getUser()
@@ -53,10 +49,21 @@ const NavbarUser = (props: any) => {
                     <NotificationsOutline />
                 </div>
                 <img width="36px" height="36px" className="rounded-circle" src="https://www.freepngimg.com/thumb/facebook/62681-flat-icons-face-computer-design-avatar-icon.png" alt=""/>
-                <p className="h-100 m-0 align-middle d-flex align-items-center ml-3" onClick={() => {console.log(props)}}>{props.auth.auth.IdentityUser.profile.name}</p>
+                <p className="h-100 m-0 align-middle d-flex align-items-center ml-3" onClick={() => {console.log(props)}}>{props.auth.auth.IdentityOidcUser.profile.name}</p>
                 <button className="btn btn-outline-danger ml-3" onClick={logout}>Logout</button>
             </div>
             )
+    }
+
+
+    function anonymousView() {
+        return (
+            <div className="h-100 d-flex align-items-center justify-content-end mr-5">
+                <button onClick={login} className="btn btn-outline-info">
+                    SignIn/SignUp
+                </button>
+            </div>
+        )
     }
 
     if (props.auth.auth.IsAuthenticated)
@@ -66,12 +73,7 @@ const NavbarUser = (props: any) => {
         )
     }else {
         return (
-            <div className="h-100 d-flex align-items-center justify-content-end mr-5">
-                <button onClick={login} className="btn btn-outline-info">
-                    SignIn/SignUp
-                </button>
-            </div>
-
+            anonymousView()
         )
     }
 
