@@ -16,5 +16,6 @@ export interface IdentityUserProfile{
 export interface authState {
     IsAuthenticated: boolean;
     IdentityOidcUser: User | undefined;
-    IdentityUser: IdentityUserProfile | undefined;
+    IdentityUserProfile: IdentityUserProfile | undefined;
+    IdentityUserName: string | undefined;
 }

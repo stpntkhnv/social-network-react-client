@@ -1,26 +1,37 @@
 import {authState} from "../States";
 import {authAction} from "./Actions";
-import authService from "../../services/authService";
-import {User} from "oidc-client";
+import {getProfileByUserName} from "../../api/usersApi";
 
 let initialState : authState = {
     IsAuthenticated: false,
     IdentityOidcUser: undefined,
-    IdentityUser: undefined
+    IdentityUserProfile: undefined,
+    IdentityUserName: undefined
 }
 
 
 export const authReducer = (state = initialState, action: authAction) => {
     switch (action.type){
         case "SIGN_IN":
+            console.log('signin')
+            let name = action.user.profile.name
+            console.log(name)
+            let profile = getProfileByUserName(action.user.profile.name);
+            console.log(profile)
             return {
+                ...state,
                 IsAuthenticated: true,
-                IdentityOidcUser: action.user
+                IdentityOidcUser: action.user,
+                IdentityUserProfile: getProfileByUserName(action.user.profile.name),
+                IdentityUserName: action.user.profile.name
             }
         case "SING_OUT":
             return {
+                ...state,
                 IsAuthenticated: false,
-                IdentityOidcUser: undefined
+                IdentityOidcUser: undefined,
+                IdentityUserProfile: undefined,
+                IdentityUserName: undefined
             }
         default:
             return state;

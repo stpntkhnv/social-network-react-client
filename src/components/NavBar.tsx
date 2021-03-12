@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import NavbarMenu from './navbar/navbar-menu';
 import NavbarUser from "./navbar/navbar-user";
 //TODO added icons

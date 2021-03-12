@@ -11,6 +11,7 @@ import {store} from "./store/configureStore";
 
 ReactDOM.render(
     <BrowserRouter>
+        <div className="position-absolute test">sdfdf</div>
         <Provider store={store}>
             <div className="d-flex">
                 <NavBar/>

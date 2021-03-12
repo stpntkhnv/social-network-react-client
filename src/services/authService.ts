@@ -1,4 +1,4 @@
-import OIDC, { UserManagerSettings } from "oidc-client"
+import OIDC, {User, UserManagerSettings} from "oidc-client"
 
 const OIDCSettings: UserManagerSettings = {
     authority: "https://localhost:1001",
@@ -43,6 +43,20 @@ export function signoutRedirectCallback() {
     userManager.clearStaleState()
     userManager.removeUser()
     return userManager.signoutRedirectCallback()
+}
+
+export function getUserProfile(){
+
+}
+
+export function getAccessToken() {
+    getUser().then(user => {
+        if (user){
+            return user.access_token
+        }else {
+            return "";
+        }
+    })
 }
 
 export default userManager
