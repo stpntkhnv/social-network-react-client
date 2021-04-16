@@ -13,13 +13,13 @@ const NavbarMenu = () => {
             <Link to="/" className="m-4">
                 <HomeOutline />
             </Link>
-            <Link to="/friends" className="m-4">
+            <Link to="/dialogs" className="m-4">
                 <ChatbubblesOutline />
             </Link>
-            <Link to="/groups" className="m-4">
+            <Link to="/peoples" className="m-4">
                 <PeopleOutline />
             </Link>
-            <Link to="/profile" className="m-4">
+            <Link to='/profile/stpn.tkhnv@gmail.com' className="m-4">
                 <PersonCircleOutline />
             </Link>
         </div>

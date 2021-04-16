@@ -1,37 +1,53 @@
-import React from 'react';
-import {applicationState} from "../store/States";
+import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
+import '../components/profile/profile.css'
+import {getProfileByUserName} from "../services/usersApi";
+import {userProfile} from "../store/interfaces";
 
 //TODO refactor all props fot types
 function Profile(props: any) {
-
-    function testProfile() {
-        let code = document.getElementById("code");
-        if(code != undefined)
-        {
-            code.innerText = props.auth.IdentityUserProfile;
+    const[userProfile, setUserProfile] = useState({});
+    useEffect( () => {
+        let init = async () => {
+            let userName = props.match.params.userName;
+            let userProfile : userProfile = await getProfileByUserName(userName);
+            setUserProfile(userProfile);
         }
 
-        console.log(props)
-    }
+        init();
+
+    }, [])
 
     return (
-        <div>
-            <h1>Hello profile</h1>
-            <button onClick={testProfile} className="mt-5 btn btn-outline-success p-5">
-                GetProfile
-            </button>
-            <pre id="code">
-                tuta
-            </pre>
+        <div className="d-flex">
+            <div className="main-section">
+                <div className="custom-card d-flex">
+                    <div className="w-50 border-right d-flex flex-column justify-content-center align-items-start">
+                        <h1 className="display-3">Hello.</h1>
+                        <h1>My name is</h1>
+                        <h3>I am </h3>
+                        <button className="btn-outline-success btn w-auto">View portfolio</button>
+                    </div>
+
+                    <div className="w-50 d-flex justify-content-center">
+                        <img src="" width="300px" alt="" className="m-5"/>
+                    </div>
+
+                </div>
+            </div>
+            <div className="right-side-bar p-4">
+                <p className="uppercase">TWITS:</p>
+            </div>
         </div>
     );
 }
 
-function mapStateToProps(state: applicationState) : applicationState {
-    return{
-        auth: state.auth
-    }
+let mapStateToProps = (state: any) => {
+
 }
 
-export default connect(mapStateToProps)(Profile);
+let mapDispatchToProps = (dispatch: any) => {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

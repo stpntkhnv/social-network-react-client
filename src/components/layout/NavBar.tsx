@@ -1,6 +1,6 @@
 import React from 'react';
-import NavbarMenu from './navbar/navbar-menu';
-import NavbarUser from "./navbar/navbar-user";
+import NavbarMenu from '../navbar/navbar-menu';
+import NavbarUser from "../navbar/navbar-user";
 //TODO added icons
 function NavBar() {
 

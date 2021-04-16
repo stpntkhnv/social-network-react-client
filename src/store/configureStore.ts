@@ -1,5 +1,5 @@
-import {Action, combineReducers, createStore, ReducersMapObject, Store} from "redux";
-import {authReducer} from "./Authentication/reducer";
+import {combineReducers, createStore} from "redux";
+import {authReducer} from "./authentication/reducer";
 
 let reducers = combineReducers({
     auth: authReducer

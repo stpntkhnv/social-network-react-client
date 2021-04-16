@@ -6,6 +6,8 @@ import Login from "./pages/login";
 import Callback from "./pages/callback";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from "./pages/profile";
+import Dialogs from "./pages/dialogs";
+import Peoples from "./pages/peoples";
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route path="/login" component={Login}/>
         <Route path="/callback-oidc" component={Callback}/>
-        <Route path="/profile" component={Profile}/>
+        <Route path="/profile/:userName" component={Profile}/>
+        <Route path="/dialogs" component={Dialogs}/>
+        <Route path="/peoples" component={Peoples}/>
       </Switch>
   );
 }

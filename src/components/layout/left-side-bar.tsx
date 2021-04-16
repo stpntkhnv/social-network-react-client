@@ -1,7 +1,7 @@
 import React from 'react';
 import './layout.css'
-import Friend from './side-bar/friend';
-import Group from './side-bar/group';
+import Friend from '../side-bar/friend';
+import Group from '../side-bar/group';
 
 //TODO change input search
 
@@ -9,17 +9,6 @@ const LeftSideBar = () => {
     return (
         <div className="left-side-bar d-none d-md-block">
             <div className="p-4">
-                <div className="d-flex mb-5">
-                    <img width="50px" height="50px" src="https://cdn.pixabay.com/photo/2016/08/23/10/17/circle-1613999_1280.png" alt="" />
-                    <div className="input-group flex-nowrap rounded-circle pl-3">
-                        <input type="text" className="form-control h-100" placeholder="Username" aria-label="Username"
-                               aria-describedby="addon-wrapping" />
-                        <button className="input-group-text text-white bg-success" id="addon-wrapping"> Search </button>
-                    </div>
-                </div>
-
-
-
                 <div className="mb-5">
                     <p className="uppercase">YOUR GROUPS:</p>
                     <Group img="http://www.topoboi.com/pic/201308/1600x1200/topoboi.com-9357.jpg" name="Alice"/>

@@ -1,0 +1,51 @@
+.left-side-bar{
+    height: 100vh;
+    min-width: 20vw;
+    padding-top: 80px !important;
+    background: white;
+    z-index: 5;
+}
+
+nav {
+    background: white;
+    z-index: 4;
+}
+
+.main-section-fluid{
+    margin-top: 80px !important;
+}
+
+.main-section{
+    padding-top: 80px !important;
+    max-height: 100vh;
+    overflow-y: scroll;
+}
+
+.main-section::-webkit-scrollbar {
+    width: 12px;
+}
+.main-section::-webkit-scrollbar-track {
+    background: white;
+}
+.main-section::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
+.is-active{
+    width: 10px;
+    height: 10px;
+}
+
+.nav-wrapper{
+    background: #e9f0f4;
+    border-bottom-left-radius: 1.3em;
+    border-bottom-right-radius: 1.3em;
+}
+
+.nav-wrapper svg {
+    width:32px !important;
+    height: 32px !important;
+}
+
