@@ -15,6 +15,7 @@ import {HubConnection} from "@microsoft/signalr";
 import {finishLoading, startLoading} from "../../store/loading/actions";
 import {getAllDialogsByName} from "../../services/signalRService";
 import {IDialog, initialDialog} from "../../store/interfaces";
+import '../layout/layout.css'
 
 const NavbarMenu = (props: any) => {
     useEffect(() => {
@@ -49,22 +50,19 @@ const NavbarMenu = (props: any) => {
     }, [])
 
     let authView = () => (
-        <div className="nav-wrapper d-flex pw-50">
-            <Link to="/" className="m-4">
+        <div className="nav-menu align-items-stretch d-flex ">
+            <Link to="/" className="p-4 nav-menu-first-element">
                 <HomeOutline />
             </Link>
-            <Link to="/dialogs" className="m-4">
+            <Link to="/chat" className="p-4 nav-menu-element">
                 <ChatbubblesOutline />
             </Link>
-            <Link to="/peoples" className="m-4">
+            <Link to="/peoples" className="p-4 nav-menu-element">
                 <PeopleOutline />
             </Link>
-            <Link to={`/profile/${props.auth.authUser.profile.name}`} className="m-4">
+            <Link to={`/profile/`} className="p-4 nav-menu-last-element">
                 <PersonCircleOutline />
             </Link>
-            <p onClick={() => {
-                console.log(props)
-            }}>daf</p>
         </div>
     )
 
@@ -73,7 +71,7 @@ const NavbarMenu = (props: any) => {
             <Link to="/" className="m-4">
                 <HomeOutline />
             </Link>
-            <Link to="/dialogs" className="m-4">
+            <Link to="/chat" className="m-4">
                 <ChatbubblesOutline />
             </Link>
             <Link to="/peoples" className="m-4">

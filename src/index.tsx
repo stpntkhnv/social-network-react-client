@@ -12,11 +12,8 @@ import {store} from "./store/configureStore";
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            <div className="d-flex">
                 <NavBar/>
-                <LeftSideBar/>
                 <App />
-            </div>
         </Provider>
 
     </BrowserRouter>

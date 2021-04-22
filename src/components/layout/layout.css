@@ -1,22 +1,4 @@
-.left-side-bar{
-    height: 100vh;
-    min-width: 20vw;
-    padding-top: 80px !important;
-    background: white;
-    z-index: 5;
-}
-
-nav {
-    background: white;
-    z-index: 4;
-}
-
-.main-section-fluid{
-    margin-top: 80px !important;
-}
-
 .main-section{
-    padding-top: 80px !important;
     max-height: 100vh;
     overflow-y: scroll;
 }
@@ -38,10 +20,27 @@ nav {
     height: 10px;
 }
 
-.nav-wrapper{
-    background: #e9f0f4;
+.nav-menu{
+    background: lightgray;
     border-bottom-left-radius: 1.3em;
     border-bottom-right-radius: 1.3em;
+}
+
+.nav-menu-element:hover{
+    background: gray;
+    transition: .3s;
+}
+
+.nav-menu-first-element:hover{
+    background: gray;
+    border-bottom-left-radius: 1.3em;
+    transition: .3s;
+}
+
+.nav-menu-last-element:hover{
+    background: gray;
+    border-bottom-right-radius: 1.3em;
+    transition: .3s;
 }
 
 .nav-wrapper svg {

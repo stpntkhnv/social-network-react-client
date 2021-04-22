@@ -19,7 +19,8 @@ function Dialogs(props: any) {
         return unloadedView()
     else
     return (
-        <div className="main-section-fluid">
+        <div className="main-section d-flex">
+            <div></div>
             <h1>Your dialogs</h1>
             {
                 dialogsList

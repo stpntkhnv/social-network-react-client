@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {IDialog, initialDialog, initialUserProfile} from "../store/interfaces";
 import {getAllDialogsByName, getDialog, sendMessage} from "../services/signalRService";
 import {updateDialogs} from "../store/signalR/actions";
+import DialogsList from "../components/dialogs/dialogsList";
 
 const Dialog = (props: any) => {
     const[secondUserProfile, setSecondUserProfile] = useState(props.location.state.userProfile)
@@ -49,19 +50,25 @@ const Dialog = (props: any) => {
     const anonymousView = () => (<h1 className="main-section-fluid">AnonymousView</h1>)
 
     const authorizedView = () => (
-        <div className="main-section-fluid">
-            <button className="btn btn-outline-success" onClick={logProps}>Log props</button>
+        <>
             <div>
-                <pre></pre>
+                <DialogsList dialogsList={props.chat.dialogsList}/>
             </div>
-            <input type="text" onChange={handleInputMessage}/>
-            <p>{message}</p>
-            <button className="btn btn-outline-info" onClick={handleSendMessage}>send message</button>
+            <div className="main-section-fluid d-none">
+                <button className="btn btn-outline-success" onClick={logProps}>Log props</button>
+                <div>
+                    <pre></pre>
+                </div>
+                <input type="text" onChange={handleInputMessage}/>
+                <p>{message}</p>
+                <button className="btn btn-outline-info" onClick={handleSendMessage}>send message</button>
 
-            <h1>Dialog with: {secondUserProfile.userName}</h1>
-            <h1>Count messages: {dialog.messages.length}</h1>
-            {dialog.messages.map(message => (<h1>{message.text}</h1>))}
-        </div>
+                <h1>Dialog with: {secondUserProfile.userName}</h1>
+                <h1>Count messages: {dialog.messages.length}</h1>
+                {dialog.messages.map(message => (<h1>{message.text}</h1>))}
+            </div>
+        </>
+
     )
 
     if(props.auth.isAuthenticated)

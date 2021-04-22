@@ -12,7 +12,7 @@ import Dialog from "./pages/dialog";
 import {applicationState} from "./store/states";
 import {finishLoading, startLoading} from "./store/loading/actions";
 import {connect} from "react-redux";
-import Test from "./pages/test";
+import Chat from "./pages/chat";
 
 function App(props:any) {
 
@@ -27,10 +27,8 @@ function App(props:any) {
             <Route path="/login" component={Login}/>
             <Route path="/callback-oidc" component={Callback}/>
             <Route path="/profile/:userName" component={Profile} />
-            <Route path="/dialogs" component={Dialogs}/>
-            <Route path="/dialog/:userName" component={Dialog}/>
+            <Route path="/chat" component={Chat}/>
             <Route path="/peoples" component={Peoples}/>
-            <Route path="/test" component={Test}/>
           </Switch>
       );
 
