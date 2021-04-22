@@ -1,8 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from "react-redux";
+import {finishLoading, startLoading} from "../store/loading/actions";
+
+const Home = (props: any) => {
 
 
-export default function Home(props: any) {
+    function res() {
+        props.startLoading()
+    }
+
     return (
-        <h1>Home page</h1>
+        <div className="main-section" onClick={res}>
+            sdfsdf
+        </div>
     );
-}
+};
+
+let mapDispatchToProps = (dispatch: any) => ({
+    startLoading: () => dispatch(startLoading()),
+    finishLoading: () => dispatch(finishLoading())
+})
+
+let mapStateToProps = (state: any) => ({
+    state
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

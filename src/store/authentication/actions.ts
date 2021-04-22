@@ -1,5 +1,5 @@
 import {User} from "oidc-client";
-import {userProfile} from "../interfaces";
+import {IUserProfile} from "../interfaces";
 
 export const SIGN_IN = "SIGN_IN"
 export const SIGN_OUT = "SIGN_OUT"
@@ -16,12 +16,12 @@ interface signOutAction{
 
 interface setUserProfileAction{
     type: typeof SET_USER_PROFILE,
-    profile: userProfile
+    profile: IUserProfile
 }
 
 export type authAction = signInAction | signOutAction | setUserProfileAction;
 
 export const signIn = (user: User) => ({type: SIGN_IN, user: user})
 export const signOut = () => ({type: SIGN_OUT})
-export const setUserProfile = (profile: userProfile) => ({type: SET_USER_PROFILE, profile: profile})
+export const setUserProfile = (profile: IUserProfile) => ({type: SET_USER_PROFILE, profile: profile})
 

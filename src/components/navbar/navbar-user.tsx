@@ -4,7 +4,7 @@ import authService, {signinRedirect, signoutRedirect} from "../../services/authS
 import {applicationState} from "../../store/states";
 import {User} from "oidc-client";
 import {setUserProfile, signIn, signOut} from "../../store/authentication/actions";
-import {userProfile} from "../../store/interfaces";
+import {IUserProfile} from "../../store/interfaces";
 import {getProfileByUserName} from "../../services/usersApi";
 import {connect} from "react-redux";
 
@@ -23,8 +23,6 @@ const NavbarUser = (props: any) => {
                 }
             })
         }
-
-        console.log('привет из навбара')
 
         signIn()
 
@@ -75,7 +73,7 @@ const NavbarUser = (props: any) => {
 
 };
 
-let mapStateToProps = (state: applicationState) => ({auth: state.auth})
+let mapStateToProps = (state: applicationState) => ({auth: state.auth, chat: state.chat})
 let mapDispatchToProps = (dispatch: any) => ({
     signIn: (user: User) => {
         dispatch(signIn(user))
@@ -83,7 +81,7 @@ let mapDispatchToProps = (dispatch: any) => ({
     signOut: () => {
         dispatch(signOut())
     },
-    setUserProfile : (userProfile: userProfile) => {
+    setUserProfile : (userProfile: IUserProfile) => {
         dispatch(setUserProfile(userProfile))
     }
 })

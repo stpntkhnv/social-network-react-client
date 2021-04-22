@@ -6,7 +6,7 @@ import {User} from "oidc-client";
 import {applicationState} from "../store/states";
 import {setUserProfile, signIn} from "../store/authentication/actions";
 import {getProfileByUserName} from "../services/usersApi";
-import {userProfile} from "../store/interfaces";
+import {IUserProfile} from "../store/interfaces";
 
 function Callback(props: any) {
     const history = useHistory()
@@ -37,7 +37,7 @@ function Callback(props: any) {
 let mapStateToProps = (state: applicationState) => {}
 let mapDispatchToProps = (dispatch: any) => ({
     signIn: (user: User) => {dispatch(signIn(user))},
-    setUserProfile: (userProfile: userProfile) => {dispatch(setUserProfile(userProfile))}
+    setUserProfile: (userProfile: IUserProfile) => {dispatch(setUserProfile(userProfile))}
 })
 
 

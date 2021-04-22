@@ -1,12 +1,25 @@
 import {User} from "oidc-client";
-import {userProfile} from "./interfaces";
+import {IDialog, IMessage, IUserProfile} from "./interfaces";
+import {HubConnection} from "@microsoft/signalr";
 
 export interface applicationState{
-    auth: authState
+    auth: authState,
+    chat: chatState,
+    loading: loadingState
 }
 
 export interface authState{
     authUser: User | undefined,
-    authUserProfile: userProfile | undefined,
+    authUserProfile: IUserProfile | undefined,
     isAuthenticated: boolean
+}
+
+export interface chatState{
+    connection: HubConnection | undefined,
+    dialogsList: IDialog[]
+}
+
+export interface loadingState{
+    isLoading: boolean,
+    status: string
 }

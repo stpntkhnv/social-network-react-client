@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
+import { Link } from 'react-router-dom';
 import '../components/profile/profile.css'
 import {getProfileByUserName} from "../services/usersApi";
-import {userProfile} from "../store/interfaces";
+import {initialUserProfile, IUserProfile} from "../store/interfaces";
 
 //TODO refactor all props fot types
 function Profile(props: any) {
-    const[userProfile, setUserProfile] = useState({});
+    const[userProfile, setUserProfile] = useState<IUserProfile>(initialUserProfile);
     useEffect( () => {
         let init = async () => {
             let userName = props.match.params.userName;
-            let userProfile : userProfile = await getProfileByUserName(userName);
+            let userProfile = await getProfileByUserName(userName);
             setUserProfile(userProfile);
         }
 
@@ -18,14 +19,18 @@ function Profile(props: any) {
 
     }, [])
 
+    function asdasd() {
+        console.log(props)
+    }
+
     return (
         <div className="d-flex">
             <div className="main-section">
                 <div className="custom-card d-flex">
                     <div className="w-50 border-right d-flex flex-column justify-content-center align-items-start">
-                        <h1 className="display-3">Hello.</h1>
-                        <h1>My name is</h1>
-                        <h3>I am </h3>
+                        <h1 className="display-3" onClick={asdasd}>Hello.</h1>
+                        <h1>My name is {userProfile.firstName} {userProfile.lastName}</h1>
+                        <h3>I am {userProfile.job}</h3>
                         <button className="btn-outline-success btn w-auto">View portfolio</button>
                     </div>
 
@@ -34,20 +39,17 @@ function Profile(props: any) {
                     </div>
 
                 </div>
+
+                <Link to={{pathname: `/dialog/${userProfile.userName}`, state: {userProfile: props.location.state.userProfile}}} className="btn btn-success">Send message</Link>
             </div>
             <div className="right-side-bar p-4">
                 <p className="uppercase">TWITS:</p>
             </div>
+
+
         </div>
     );
 }
 
-let mapStateToProps = (state: any) => {
 
-}
-
-let mapDispatchToProps = (dispatch: any) => {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;
