@@ -1,10 +1,6 @@
 import React from 'react';
 
 class Test extends React.Component {
-    constructor() {
-        super();
-        this.state = {color: "red"};
-    }
 
     componentDidMount() {
         alert('hi')

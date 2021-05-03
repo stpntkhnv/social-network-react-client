@@ -1,11 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import {connect} from "react-redux";
+
 
 const DialogCard = (props: any) => {
+    let secondUser = props.auth.authUser.profile.name != props.dialog.firstUser.userName ? props.auth.authUser.profile : props.dialog.secondUser;
     return (
-        <div className="w-100 bg-info">
-            <h1>{props.dialog.secondUser.userName}</h1>
-        </div>
+        <Link to={{ pathname: "/chat/"+secondUser.userName, state: {userProfile: secondUser} }} className="w-100 bg-info">
+            <h1>{secondUser.userName}</h1>
+        </Link>
     );
 };
 
-export default DialogCard;
+let mapStateToProps = (state: any) => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps)(DialogCard);

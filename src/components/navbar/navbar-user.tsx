@@ -10,23 +10,7 @@ import {connect} from "react-redux";
 
 const NavbarUser = (props: any) => {
 
-    useEffect(() => {
-        function signIn() {
-            authService.getUser().then(user => {
-                if(user)
-                {
-                    props.signIn(user);
-                    getProfileByUserName(user.profile.name)
-                        .then(data => {
-                            props.setUserProfile(data)
-                        })
-                }
-            })
-        }
 
-        signIn()
-
-    }, []);
 
     function login(){
         signinRedirect();

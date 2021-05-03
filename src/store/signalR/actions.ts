@@ -1,37 +1,51 @@
 import {HubConnection} from "@microsoft/signalr";
 import {IDialog, IMessage} from "../interfaces";
+import {finishLoading, startLoading} from "../loading/actions";
+import {getAllDialogsByName, getDialog} from "../../services/signalRService";
+import dialogsList from "../../components/dialogs/dialogsList";
 
-export const SEND_MESSAGE = "SEND_MESSAGE"
 export const SET_CONNECTION = "SET_CONNECTION"
-export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE"
-export const UPDATE_DIALOGS = "UPDATE_DIALOGS"
-
-interface sendMessageAction{
-    type: typeof SEND_MESSAGE,
-    message: string,
-    senderUserName: string,
-    receiverUserName: string
-}
+export const SET_DIALOG = 'SET_DIALOG'
+export const SET_ALL_DIALOGS = 'SET_ALL_DIALOGS'
 
 interface setConnectionAction{
     type: typeof SET_CONNECTION,
     connection: HubConnection
 }
 
-interface receiveMessageAction{
-    type: typeof RECEIVE_MESSAGE,
-    message: IMessage
+interface setDialogAction {
+    type: typeof SET_DIALOG,
+    dialog: IDialog
 }
 
-interface updateDialogsAction{
-    type: typeof UPDATE_DIALOGS,
+interface setAllDialogsAction {
+    type: typeof SET_ALL_DIALOGS,
     dialogsList: IDialog[]
 }
 
+export type chatAction = setConnectionAction | setDialogAction | setAllDialogsAction;
 
-export type chatAction = sendMessageAction | setConnectionAction | receiveMessageAction | updateDialogsAction;
-
-export const sendMessage = (message: string, senderUserName: string, receiverUserName: string) => ({type: "SEND_MESSAGE", message: message, senderUserName: senderUserName, receiverUserName: receiverUserName});
 export const setConnection = (connection: HubConnection) => ({type:"SET_CONNECTION", connection: connection});
-export const receiveMessage = (message: IMessage) => ({type: "RECEIVE_MESSAGE", message: message})
-export const updateDialogs = (dialogsList: IDialog[]) => ({type:UPDATE_DIALOGS, dialogsList: dialogsList})
+export const setDialog = (dialog: IDialog) => ({type: SET_DIALOG, dialog: dialog})
+export const setAllDialogs = (dialogsList: IDialog[]) => ({type: SET_ALL_DIALOGS, dialogsList: dialogsList})
+
+export const getDialogThunk = (firstUserName: string, secondUserName: string) => {
+    return  async (dispatch: any) => {
+        dispatch(startLoading())
+        getDialog(firstUserName, secondUserName)
+            .then(dialog => {
+                dispatch(setDialog(dialog))
+                dispatch(finishLoading())
+            })
+    }
+}
+export const getAllDialogsThunk = (userName: string) => {
+    return async (dispatch: any) => {
+        dispatch(startLoading())
+        getAllDialogsByName(userName)
+            .then(dialogsList => {
+                dispatch(setAllDialogs(dialogsList))
+                dispatch(finishLoading())
+            })
+    }
+}

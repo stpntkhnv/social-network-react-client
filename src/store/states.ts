@@ -5,7 +5,8 @@ import {HubConnection} from "@microsoft/signalr";
 export interface applicationState{
     auth: authState,
     chat: chatState,
-    loading: loadingState
+    loading: loadingState,
+    peoples: peoplesState
 }
 
 export interface authState{
@@ -16,10 +17,15 @@ export interface authState{
 
 export interface chatState{
     connection: HubConnection | undefined,
-    dialogsList: IDialog[]
+    dialogsList: IDialog[],
+    dialog: IDialog
 }
 
 export interface loadingState{
     isLoading: boolean,
     status: string
+}
+
+export interface peoplesState{
+    peoplesList: IUserProfile[]
 }

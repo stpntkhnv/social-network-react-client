@@ -14,8 +14,13 @@ function NavBar(props: any) {
     else
 
     return (
-        <nav className="w-100 d-flex justify-content-between sticky-top">
-            <div className="w-25"></div>
+        <nav className="w-100 d-flex justify-content-between sticky-top bg-none">
+            <div className="w-25 d-flex">
+                <p>connection: {props.chat.connection == undefined ? <p>false</p> : <p>true</p>}</p>
+                <p>dialogslist:{props.chat.dialogsList.length == 0 ? <p>false</p> : <p>true</p>}</p>
+                <p>authUser: {props.auth.authUser == undefined ? <p>false</p> : <p>true</p>}</p>
+                <p>loading: {props.loading.isLoading == false ? <p>false</p> : <p>true</p>}</p>
+            </div>
             <NavbarMenu />
             <div className="w-25">
                 <NavbarUser />
@@ -25,7 +30,9 @@ function NavBar(props: any) {
 }
 
 let mapStateToProps = (state: any) => ({
-    auth: state.auth
+    auth: state.auth,
+    chat: state.chat,
+    loading: state.loading
 })
 
 export default connect(mapStateToProps)(NavBar);

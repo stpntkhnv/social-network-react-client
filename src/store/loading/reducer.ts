@@ -9,12 +9,14 @@ let initialState : loadingState = {
 export const loadingReducer = (state = initialState, action: loadingAction) => {
     switch (action.type) {
         case FINISH_LOADING:
+            console.log('finish loading')
             return{
                 ...state,
                 isLoading: false,
                 status: 'loaded'
             }
         case START_LOADING:
+            console.log('start loading')
             return{
                 ...state,
                 isLoading: true,

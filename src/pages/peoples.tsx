@@ -6,39 +6,34 @@ import {IUserProfile} from "../store/interfaces";
 import {applicationState} from "../store/states";
 import {finishLoading, startLoading} from "../store/loading/actions";
 import {connect} from "react-redux";
+import {getAllUsersProfilesThunk} from "../store/peoples/actions";
+import Loading from "./loading";
 
 function Peoples(props: any) {
-    const[allUsers, setAllUsers] = useState<IUserProfile[]>([])
-
-
     useEffect(() => {
-            const fetchUsers = async () => {
-            props.startLoading()
-            getAllUsersProfiles().then(data => {
-                setAllUsers(data)
-            })
-            props.finishLoading()
-        }
-
-        fetchUsers()
+        props.getAllUsersProfiles()
     }, [])
 
+    if(props.loading.isLoading)
+        return <Loading/>
     return (
         <div className="main-section d-flex align-items-start row ml-0 mr-0 overflow-y-hidden justify-content-center justify-content-xl-start">
-            {allUsers.map(user => (<UserCard User={user}/>))}
+            {props.peoples.peoplesList.map((user: IUserProfile) => (<UserCard User={user}/>))}
         </div>
     );
 }
 
 let mapStateToProps = (state: applicationState) => {
     return {
-        p: state
+        peoples: state.peoples,
+        loading: state.loading
     }
 }
 let mapDispatchToProps = (dispatch: any) => {
     return {
         startLoading: () => dispatch(startLoading()),
-        finishLoading: () => dispatch(finishLoading())
+        finishLoading: () => dispatch(finishLoading()),
+        getAllUsersProfiles: () => dispatch(getAllUsersProfilesThunk())
     }
 
 }

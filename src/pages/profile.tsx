@@ -40,7 +40,7 @@ function Profile(props: any) {
 
                 </div>
 
-                <Link to={{pathname: `/dialog/${userProfile.userName}`, state: {userProfile: props.location.state.userProfile}}} className="btn btn-success">Send message</Link>
+                <Link to={{pathname: `/chat/${userProfile.userName}`, state: {userProfile: props.location.state.userProfile}}} className="btn btn-success">Send message</Link>
             </div>
             <div className="right-side-bar p-4">
                 <p className="uppercase">TWITS:</p>

@@ -1,32 +1,31 @@
 import {chatState} from "../states";
-import {chatAction, SET_CONNECTION} from "./actions";
+import {chatAction, SET_ALL_DIALOGS, SET_CONNECTION, SET_DIALOG} from "./actions";
+import {initialDialog} from "../interfaces";
 
 let initialState : chatState = {
     dialogsList: [],
-    connection: undefined
-
+    connection: undefined,
+    dialog: initialDialog
 }
 
 export const chatReducer = (state = initialState, action: chatAction) => {
     switch (action.type){
-        case "SEND_MESSAGE":
-            return {
-                ...state
-            }
         case 'SET_CONNECTION':
             return {
                 ...state,
                 connection: action.connection
 
             }
-        case "RECEIVE_MESSAGE":
-            return {
-                ...state
-            }
-        case "UPDATE_DIALOGS":
+        case SET_ALL_DIALOGS:
             return {
                 ...state,
                 dialogsList: action.dialogsList
+            }
+
+        case SET_DIALOG:
+            return {
+                ...state,
+                dialog: action.dialog
             }
         default:
             return {

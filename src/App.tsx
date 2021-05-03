@@ -6,41 +6,46 @@ import Login from "./pages/login";
 import Callback from "./pages/callback";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from "./pages/profile";
-import Dialogs from "./pages/dialogs";
 import Peoples from "./pages/peoples";
 import Dialog from "./pages/dialog";
 import {applicationState} from "./store/states";
 import {finishLoading, startLoading} from "./store/loading/actions";
 import {connect} from "react-redux";
 import Chat from "./pages/chat";
+import InitializedComponent from "./components/initialized-component";
+import Test from "./pages/test";
+
+//move store init from navbar to app.tsx
 
 function App(props:any) {
+      let authorizedView = () => (
+          <>
+              <InitializedComponent/>
+              <Switch>
+                  <Route exact path="/" component={Home}/>
+                  <Route path="/login" component={Login}/>
+                  <Route path="/callback-oidc" component={Callback}/>
+                  <Route path="/profile/:userName" component={Profile} />
+                  <Route exact path="/chat" component={Chat}/>
+                  <Route path="/chat/:userName" component={Chat}/>
+                  <Route path="/peoples" component={Peoples}/>
+                  <Route path="/dialog/:userName" component={Dialog}/>
+                  <Route path="/test" component={Test}/>
+              </Switch>
+          </>
 
-    let loadingView = (
-        <div className="main-section-fluid bg-dark">ASD</div>
-    )
-
-
-      let applicationView = () => (
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/callback-oidc" component={Callback}/>
-            <Route path="/profile/:userName" component={Profile} />
-            <Route path="/chat" component={Chat}/>
-            <Route path="/peoples" component={Peoples}/>
-          </Switch>
       );
 
     const anonymousView = () => (
         <>
             <Route path="/callback-oidc" component={Callback}/>
+            <InitializedComponent/>
             <h1 className="main-section-fluid">anonymousView</h1>
         </>
     )
 
     if(props.auth.isAuthenticated)
-        return applicationView()
+        return authorizedView()
     else
         return anonymousView()
 }
