@@ -5,6 +5,10 @@ import {IDialog, IMessage, initialDialog, initialUserProfile, IUserProfile} from
 import {getDialog, sendMessage} from '../services/signalRService';
 import {getAllDialogsThunk, getDialogThunk} from "../store/signalR/actions";
 import {getProfileByUserName} from "../services/usersApi";
+import { Button } from '@material-ui/core';
+import Message from "../components/dialogs/message";
+import TextField from '@material-ui/core/TextField';
+import Icon from '@material-ui/core/Icon';
 
 const Dialog = (props: any) => {
     const[message, setMessage] = useState('')
@@ -36,23 +40,26 @@ const Dialog = (props: any) => {
         setMessage(event.target.value)
     }
 
-    const handleSendMessage = () => {
+    const handleSendMessage = (event: React.FormEvent) => {
+        event.preventDefault()
         sendMessage(props.chat.connection, message, props.auth.authUser.profile.name, secondUser.userName)
         props.getAllDialogs(props.auth.authUser.profile.name)
     }
 
     return (
-        <>
-            <button onClick={() => {
-                console.log(props)
-            }}>Log props</button>
-            <h1>hello, i'm dialog with {props.userName}</h1>
-            <input type="text" onChange={handleInputMessage}/>
-            <button onClick={handleSendMessage}>send Message</button>
-            <p>{dialog.messages.length}</p>
-            {dialog.messages.map((message: IMessage) => (<h1>{message.text}</h1>))}
-
-        </>
+        <div className={"d-flex flex-column flex-column justify-content-between h-100"}>
+            <div className={"scrollable-section"}>
+                {dialog.messages.map(message => (<Message message={message}/>))}
+            </div>
+            <div className={"d-flex w-100 justify-content-center"}>
+                <form className={"w-50"} onSubmit={handleSendMessage}>
+                    <TextField id="standard-basic" label="Standard" className={"w-75 my-5"} autoComplete={"off"} onChange={handleInputMessage}/>
+                    <Button type="submit" variant="outlined" color="primary" className={"w-25 my-5"}>
+                        Send
+                    </Button>
+                </form>
+            </div>
+        </div>
 
     )
 };

@@ -18,6 +18,13 @@ const Home = (props: any) => {
         <div className="main-section" onClick={res}>
             sdfsdf
             <button onClick={testThunk}>test thunk</button>
+            <h1 onClick={async () => {
+                fetch(`https://localhost:5001/api/users/login?userName=${props.auth.authUser.profile.name}`)
+                    .then(data => {
+                        alert(data.json())
+                    })
+
+            }}>ertherh</h1>
         </div>
     );
 };
@@ -29,7 +36,7 @@ let mapDispatchToProps = (dispatch: any) => ({
 })
 
 let mapStateToProps = (state: any) => ({
-    state
+    auth: state.auth
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

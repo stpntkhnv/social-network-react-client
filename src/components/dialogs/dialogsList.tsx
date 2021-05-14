@@ -11,7 +11,10 @@ const DialogsList = (props: any) => {
             {props.chat.dialogsList.map((dialog:IDialog) => {
                 let secondUserName = props.auth.authUser.profile.name == dialog.firstUser.userName ?  dialog.secondUser.userName : dialog.firstUser.userName
                     return (
-                        <Link to={"/chat/"+secondUserName}>{secondUserName}</Link>
+                        <>
+                            <DialogCard dialog={dialog}/>
+                        </>
+
                     )
                 }
             )}

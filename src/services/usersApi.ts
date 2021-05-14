@@ -1,5 +1,5 @@
 export async function getProfileByUserName(userName: string | undefined){
-    return fetch(`https://localhost:5001/api/users/getProfileByName?userName=${userName}`)
+    return fetch(`https://localhost:5001/api/users/GetProfileByName?userName=${userName}`)
         .then(response => {
             return response.json();
         })
@@ -9,7 +9,7 @@ export async function getProfileByUserName(userName: string | undefined){
 }
 
 export function getAllUsers(){
-    return fetch("https://localhost:5001/api/users/getallusers")
+    return fetch("https://localhost:5001/api/users/GetAll")
         .then(response => {
             return response.json()
         })
@@ -19,7 +19,7 @@ export function getAllUsers(){
 }
 
 export function getAllUsersProfiles(){
-    return fetch("https://localhost:5001/api/users/getAllUsersProfiles")
+    return fetch("https://localhost:5001/api/users/GetAllProfiles")
         .then(response => {
             return response.json()
         })

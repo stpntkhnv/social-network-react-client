@@ -1,7 +1,8 @@
 import React from 'react';
-import NavbarMenu from '../navbar/navbar-menu';
-import NavbarUser from "../navbar/navbar-user";
+import NavbarMenu from './navbar-menu';
+import NavbarUser from "./navbar-user";
 import {connect} from "react-redux";
+import "./navbarStyles.css"
 //TODO added icons
 function NavBar(props: any) {
 
@@ -14,7 +15,7 @@ function NavBar(props: any) {
     else
 
     return (
-        <nav className="w-100 d-flex justify-content-between sticky-top bg-none">
+        <nav className="w-100 d-flex justify-content-between nav bg-none">
             <div className="w-25 d-flex">
                 <p>connection: {props.chat.connection == undefined ? <p>false</p> : <p>true</p>}</p>
                 <p>dialogslist:{props.chat.dialogsList.length == 0 ? <p>false</p> : <p>true</p>}</p>

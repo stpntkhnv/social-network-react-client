@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import NavBar from './components/layout/NavBar';
+import NavBar from './components/navbar/NavBar';
 import LeftSideBar from "./components/layout/left-side-bar";
 import { Provider } from 'react-redux';
 import {store} from "./store/configureStore";
@@ -13,7 +13,9 @@ ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
                 <NavBar/>
-                <App />
+                <div className={"app"}>
+                    <App/>
+                </div>
         </Provider>
 
     </BrowserRouter>

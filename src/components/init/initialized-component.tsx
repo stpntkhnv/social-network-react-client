@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react';
 import * as signalR from "@microsoft/signalr";
-import {getAllDialogsThunk, setAllDialogs, setConnection} from "../store/signalR/actions";
+import {getAllDialogsThunk, setAllDialogs, setConnection} from "../../store/signalR/actions";
 import {HubConnection} from "@microsoft/signalr";
 import {connect} from "react-redux";
 import {User} from "oidc-client";
-import {setUserProfile, signIn, signOut} from "../store/authentication/actions";
-import authService from "../services/authService";
-import {getProfileByUserName} from "../services/usersApi";
-import {IDialog, IUserProfile} from "../store/interfaces";
-import {getAllDialogsByName} from "../services/signalRService";
-import dialogsList from "./dialogs/dialogsList";
+import {setUserProfile, signIn, signOut} from "../../store/authentication/actions";
+import authService from "../../services/authService";
+import {getProfileByUserName} from "../../services/usersApi";
+import {IDialog, IUserProfile} from "../../store/interfaces";
+import {getAllDialogsByName} from "../../services/signalRService";
+import dialogsList from "../dialogs/dialogsList";
+import SignIn from "./sign-in";
 
 const InitializedComponent = (props: any) => {
     //sign-in, set-connection
@@ -23,7 +24,7 @@ const InitializedComponent = (props: any) => {
         hubConnection.on("ReceiveMessage", () => {
             getAllDialogsByName(props.auth.authUser.profile.name)
                 .then((dialogsList: IDialog[]) => {
-                    props.updateDialogsList(dialogsList)
+                    props.getAllDialogs(props.auth.authUser.profile.name)
                 })
         })
 
@@ -39,23 +40,14 @@ const InitializedComponent = (props: any) => {
 
 
         //TODO: replace with thunk
-        authService.getUser().then(user => {
-            if(user)
-            {
-                props.signIn(user);
-                getProfileByUserName(user.profile.name)
-                    .then(data => {
-                        props.setUserProfile(data)
-                    })
-            }
-        })
+
 
 
     }, [null])
 
     return (
         <div>
-
+            <SignIn/>
         </div>
     );
 };
@@ -71,7 +63,7 @@ const mapDispatchToProps = (dispatch: any) => ({
     signIn: (user: User) => {dispatch(signIn(user))},
     signOut: () => {dispatch(signOut())},
     setUserProfile: (userProfile: IUserProfile) => {dispatch(setUserProfile(userProfile))},
-    updateDialogsList: (dialogsList: IDialog[]) => dispatch(setAllDialogs(dialogsList))
+    getAllDialogs: (userName: string) => dispatch(getAllDialogsThunk(userName))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(InitializedComponent);

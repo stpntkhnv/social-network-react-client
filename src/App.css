@@ -35,3 +35,9 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.scrollable-section{
+  overflow-y: scroll;
+}

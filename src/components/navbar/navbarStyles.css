@@ -1,0 +1,32 @@
+.nav-menu{
+    background: lightgray;
+    border-bottom-left-radius: 1.3em;
+    border-bottom-right-radius: 1.3em;
+}
+
+.nav-menu-element:hover{
+    background: gray;
+    transition: .3s;
+}
+
+.nav-menu-first-element:hover{
+    background: gray;
+    border-bottom-left-radius: 1.3em;
+    transition: .3s;
+}
+
+.nav-menu-last-element:hover{
+    background: gray;
+    border-bottom-right-radius: 1.3em;
+    transition: .3s;
+}
+
+.nav-wrapper svg {
+    width:32px !important;
+    height: 32px !important;
+}
+
+.nav{
+    position: absolute;
+    top: 0;
+}

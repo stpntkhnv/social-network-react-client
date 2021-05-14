@@ -5,7 +5,8 @@ import {finishLoading, startLoading} from "../store/loading/actions";
 import {connect} from "react-redux";
 import {IDialog} from "../store/interfaces";
 import {getAllDialogsThunk} from "../store/signalR/actions";
-import { List } from '@material-ui/core';
+import {Divider, List, ListItem, ListItemText } from '@material-ui/core';
+import { ListItemIcon } from '@material-ui/core';
 
 const Chat = (props: any) => {
     const[selectedDialog, selectDialog] = useState<IDialog | undefined>(undefined)
@@ -15,25 +16,15 @@ const Chat = (props: any) => {
 
     let dialogIsChangedView = () => (
         <>
-            <div className={"w-100"}>
-                <div style={{width: '20vw'}}>
-
-                    <div className={"w-100"}>
-                        <h1>adfasdf</h1>
-                        <h1>adfasdf</h1>
-                        <h1>adfasdf</h1><h1>adfasdf</h1>
-                        <h1>adfasdf</h1>
-                        <h1>adfasdf</h1>
-                        <h1>adfasdf</h1><h1>adfasdf</h1>
-
-
-                    </div>
+            <div className={"d-flex w-100 h-100"}>
+                <div className={"w-25 overflow-auto"}>
+                    <DialogsList/>
                 </div>
+                <div className={"w-75"}>
+                    <Dialog key={props.match.params.userName} userName={props.match.params.userName}/>
+                </div>
+
             </div>
-            <h1>dialog is changed</h1>
-            <DialogsList/>
-            <h1>selectedDialog: {selectedDialog == undefined ? <span>false</span> : <span>true</span>}</h1>
-            <Dialog key={props.match.params.userName} userName={props.match.params.userName}/>
         </>
     )
     let dialogIsNotChangedView = () => (

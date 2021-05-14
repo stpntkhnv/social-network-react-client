@@ -12,14 +12,17 @@ import {applicationState} from "./store/states";
 import {finishLoading, startLoading} from "./store/loading/actions";
 import {connect} from "react-redux";
 import Chat from "./pages/chat";
-import InitializedComponent from "./components/initialized-component";
+import InitializedComponent from "./components/init/initialized-component";
 import Test from "./pages/test";
+import SignIn from "./components/init/sign-in";
+import Groups from "./pages/groups";
+import GroupCreate from "./pages/group-create";
 
 //move store init from navbar to app.tsx
 
 function App(props:any) {
       let authorizedView = () => (
-          <>
+          <div className={"h-100"}>
               <InitializedComponent/>
               <Switch>
                   <Route exact path="/" component={Home}/>
@@ -31,15 +34,17 @@ function App(props:any) {
                   <Route path="/peoples" component={Peoples}/>
                   <Route path="/dialog/:userName" component={Dialog}/>
                   <Route path="/test" component={Test}/>
+                  <Route path="/groups" component={Groups}/>
+                  <Route path="/group-create" component={GroupCreate}/>
               </Switch>
-          </>
+          </div>
 
       );
 
     const anonymousView = () => (
         <>
             <Route path="/callback-oidc" component={Callback}/>
-            <InitializedComponent/>
+            <SignIn/>
             <h1 className="main-section-fluid">anonymousView</h1>
         </>
     )
